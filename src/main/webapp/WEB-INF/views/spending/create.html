@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/spending/layout::head"></head>
+<body>
+<div th:replace="/spending/layout::header"></div>
+<form method="post" th:object="${spendingForm}" enctype="multipart/form-data">
+    <fieldset>
+        <legend><h3>THÊM KHOẢN CHI TIÊU MỚI</h3></legend>
+
+        <div class="input-info">
+            <lable for="category"><h5>Danh mục chi tiêu</h5></lable>
+            <select  id="category" th:field="*{category}">
+                <option th:each="category:${categories}"
+                        th:value="${category.id}"
+                        th:text="${category.name}">
+
+                </option>
+            </select>
+        </div>
+        <div class="input-info">
+            <lable for="name"><h5>Tên khoản chi tiêu</h5></lable>
+            <input type="text" id="name" th:field="*{name}">
+        </div>
+        <div class="input-info">
+            <lable for="price"><h5>Giá tiền</h5></lable>
+            <input type="text" id="price" th:field="*{price}">
+        </div>
+        <div class="input-info">
+            <lable for="note"><h5>Ghi chú</h5></lable>
+            <input type="text" id="description" th:field="*{note}">
+        </div>
+        <div class="input-info">
+            <lable for="image"><h5>Ảnh hoá đơn</h5></lable>
+            <input type="file" id="image" th:field="*{image}">
+        </div>
+
+        <button class="btn btn-primary">Xác nhận</button>
+    </fieldset>
+
+</form>
+</body>
+</html>

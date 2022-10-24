@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/spending/layout::head"></head>
+<body>
+<div th:replace="/spending/layout::header"></div>
+<form th:action="@{/spendings}">
+    <div class="search">
+        <lable><h5>Tìm kiếm khoản chi</h5></lable>
+        <input type="text" size="70" name="name">
+        <button class="btn btn-primary">Tìm kiếm</button>
+    </div>
+</form>
+<br>
+<a th:href="@{/spendings/create}">
+    <button class="btn btn-primary">Thêm khoản chi mới</button></a>
+<br>
+<fieldset>
+    <legend><h3>DANH SÁCH CÁC KHOẢN CHI</h3></legend>
+    <table class="table table-success table-striped">
+        <tr>
+            <th>STT</th>
+            <th>Ảnh hoá đơn</th>
+            <th>Danh mục khoản chi</th>
+            <th>Tên khoản chi</th>
+            <th>Giá tiền($)</th>
+            <th>Ghi chú</th>
+            <th>Thao tác</th>
+        </tr>
+        <tr th:each="spending,spendingStatus : ${spendings}">
+            <td th:text="${spendingStatus.count}"></td>
+            <td><img th:src="@{/image/__${spending.image}__}" alt="Ảnh hoá đơn" width="100" height="100"></td>
+            <td th:text="${spending.category.getName()}"></td>
+            <td><a th:href="@{/spendings/view/__${spending.id}__}" th:text="${spending.name}"></a></td>
+            <td th:text="${spending.price}"></td>
+            <td th:text="${spending.note}"></td>
+            <td>
+                <a th:href="@{/spendings/edit/__${spending.id}__}">
+                    <button class="btn btn-primary">Sửa</button></a>
+                <a th:href="@{/spendings/delete/__${spending.id}__}">
+                    <button class="btn btn-danger">Xóa</button></a>
+            </td>
+        </tr>
+    </table>
+</fieldset>
+</body>
+</html>
