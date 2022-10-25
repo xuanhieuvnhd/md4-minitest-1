@@ -8,11 +8,15 @@ import com.service.spending.ISpendingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -62,6 +66,17 @@ public class SpendingController {
         modelAndView.addObject("spendingForm", spendingForm);
         return modelAndView;
     }
+//    @PostMapping("/create")
+//    public String checkValidation (@Valid @ModelAttribute("spending")Spending spending, BindingResult bindingResult, Model model){
+//        new Spending().validate(spending, bindingResult);
+//        if (bindingResult.hasFieldErrors()){
+//            return "error";
+//        }
+//        else {
+//            model.addAttribute("spending", spending);
+//            return "list";
+//        }
+//    }
 
     @PostMapping("/create")
     private ModelAndView createSpending(@ModelAttribute SpendingForm spendingForm) {

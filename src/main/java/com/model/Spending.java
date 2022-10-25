@@ -1,9 +1,15 @@
 package com.model;
 
+import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+import org.springframework.validation.Validator;
+
 import javax.persistence.*;
 
 @Entity
-public class Spending {
+@Component
+public class Spending implements Validator {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -81,5 +87,20 @@ public class Spending {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return Spending.class.isAssignableFrom(clazz);
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+    Spending spending =(Spending) target;
+    String price = String.valueOf(spending.getPrice());
+        ValidationUtils.rejectIfEmpty(errors, "price","price.empty");
+        if (!price.matches("(^[0-9]*$)")){
+            errors.rejectValue("price","price.matches");
+        }
     }
 }
