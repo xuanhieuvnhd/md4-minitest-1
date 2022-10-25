@@ -12,9 +12,10 @@ public class SpendingService implements ISpendingService {
     @Autowired
     ISpendingRepository spendingRepository;
     @Override
-    public List<Spending> findAll() {
+    public List<Spending> findAllSpending() {
         return spendingRepository.findAll();
     }
+
 
     @Override
     public Spending findById(Long id) {

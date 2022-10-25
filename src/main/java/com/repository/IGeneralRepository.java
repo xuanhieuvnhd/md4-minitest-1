@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IGeneralRepository<T> {
 
-    List<T> findAll();
+//    List<T> findAll();
 
     T findById(Long id);
 

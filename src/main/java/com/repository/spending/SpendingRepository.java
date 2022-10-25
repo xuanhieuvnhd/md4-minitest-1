@@ -19,9 +19,10 @@ public class SpendingRepository implements ISpendingRepository {
 
     @Override
     public List<Spending> findAll() {
-        TypedQuery<Spending> query = em.createQuery("Select p from Spending as p", Spending.class);
+        TypedQuery<Spending> query = em.createQuery("Select p from Spending p", Spending.class);
         return query.getResultList();
     }
+
 
     @Override
     public Spending findById(Long id) {

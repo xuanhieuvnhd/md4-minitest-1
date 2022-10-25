@@ -19,7 +19,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("spendings")
+@RequestMapping("/spendings")
 public class SpendingController {
     @Autowired
     private ISpendingService spendingService;
@@ -33,10 +33,10 @@ public class SpendingController {
         return categoryService.findAll();
     }
 
-    @GetMapping
+    @GetMapping("/findspendings")
     private ModelAndView showAllSpending(String name) {
         if (name == null) {
-            List<Spending> spendings = this.spendingService.findAll();
+            List<Spending> spendings = this.spendingService.findAllSpending();
             ModelAndView modelAndView = new ModelAndView("/spending/list");
             modelAndView.addObject("spendings", spendings);
             return modelAndView;
@@ -46,6 +46,13 @@ public class SpendingController {
             modelAndView.addObject("spendings", spendings);
             return modelAndView;
         }
+    }
+    @GetMapping("")
+    private ModelAndView showAllSpending() {
+        List<Spending> spendings = this.spendingService.findAllSpending();
+        ModelAndView modelAndView = new ModelAndView("/spending/list");
+        modelAndView.addObject("spendings", spendings);
+        return modelAndView;
     }
 
     @GetMapping("/create")

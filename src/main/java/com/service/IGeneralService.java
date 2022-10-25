@@ -3,7 +3,7 @@ package com.service;
 import java.util.List;
 
 public interface IGeneralService<T> {
-    List<T> findAll();
+//    List<T> findAll();
 
     T findById(Long id);
 

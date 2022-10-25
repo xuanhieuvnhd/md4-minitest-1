@@ -16,7 +16,6 @@ public class CategoryRepository implements ICategoryRepository {
 
     @PersistenceContext
     private EntityManager em;
-
     @Override
     public List<Category> findAll() {
         TypedQuery<Category> query = em.createQuery("Select c from Category as c", Category.class);
